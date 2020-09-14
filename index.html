@@ -31,7 +31,8 @@
                     Hack hint: typing <script>alert(1)</script> in the input field won't work, but
                     typing something like <img src=" " onerror="alert(1)"> will! -->
 
-            <input class="text-center" placeholder="Answer here." id="token-question" style="margin-bottom: 1%;">
+            <input class="text-center" placeholder="Answer here." id="token-question" style="margin-bottom: 1%;"  >
+            
 
             <p><strong>You:</strong> Well, about my ticket... I <span id="token-answer"
                     style="color: #f0c419"></span>...</p>
@@ -48,6 +49,25 @@
 
         function updateValue(e) {
             log.innerHTML = e.target.value;
+        }
+
+        function escapeHTML(str) {
+            str = str + "''";
+            var out = "''";
+            for(var i=0; i<str.length; i++) {
+                if(str[i] === '<') {
+                    out += '&lt;';
+                } else if(str[i] === '>') {
+                    out += '&gt;';
+                } else if(str[i] === "'") {
+                    out += '&#39;';
+                } else if(str[i] === '"') {
+                    out += '&quot;';
+                } else {
+                    out += str[i];
+                }
+            }
+            return out;
         }
 
     </script>
